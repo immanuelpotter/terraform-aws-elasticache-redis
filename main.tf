@@ -7,6 +7,11 @@ provider "aws" {
     region     = "${var.region}"
 }
 
+provider "aws" {
+    alias = "east"
+    region = "us-east-1"
+}
+
 resource "aws_elasticache_subnet_group" "redis" {
     name        = "${var.name}"
     description = "Subnets the Redis instances can be place into."
@@ -41,4 +46,18 @@ resource "aws_elasticache_cluster" "redis" {
     lifecycle {
         create_before_destroy = true
     }
+}
+
+data "aws_route53_zone" "selected" {
+    provider     = "aws.east"
+    name         = "${var.domain_name}."
+    private_zone = false
+}
+
+resource "aws_route53_record" "redis" {
+    zone_id = "${data.aws_route53_zone.selected.zone_id}"
+    name    = "${var.host_name}.${var.domain_name}"
+    type    = "CNAME"
+    ttl     = "300"
+    records = ["${aws_elasticache_cluster.redis.cache_nodes.0.address}"]
 }

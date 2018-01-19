@@ -88,5 +88,15 @@ variable "availability_zone" {
 
 variable "subnet_ids" {
     type = "list"
-    description = "List of subnets ids where the instance can live, eg. [subnet-6412a148,subnet-e18b0185]"
+    description = "List of subnets ids where the instance can live, e.g. [subnet-6412a148,subnet-e18b0185]"
+}
+
+variable "domain_name" {
+    type = "string"
+    description = "Route53 managed domain name to map the instance to, e.g. example.com."
+}
+
+variable "host_name" {
+    type = "string"
+    description = "The host name to use when creating the mapping to your managed domain name, e.g. development-redis."
 }

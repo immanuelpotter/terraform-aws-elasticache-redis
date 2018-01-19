@@ -17,6 +17,8 @@ module "redis" {
     subnet_ids                       = ["subnet-568ee830","subnet-4a33b402","subnet-ac5f72f7"]
     snapshot_window                  = ""
     snapshot_retention_limit         = "0"
+    domain_name                      = "transparent.engineering"
+    host_name                        = "debug-redis"
 }
 
 output "address" {
@@ -33,4 +35,8 @@ output "availability_zone" {
 
 output "id" {
     value = "${module.redis.id}"
+}
+
+output "fqdn" {
+    value = "${module.redis.fqdn}"
 }

@@ -17,3 +17,8 @@ output "id" {
     value = "${aws_elasticache_cluster.redis.cache_nodes.0.id}"
     description = "The ID of the instance."
 }
+
+output "fqdn" {
+    value = "${aws_route53_record.redis.fqdn}"
+    description = "Primary DNS name based on the custom domain name."
+}

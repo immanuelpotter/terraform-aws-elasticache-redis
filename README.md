@@ -20,9 +20,12 @@ This module is not installed but, instead, is obtained by the project using the 
 The `debug` folder contains files that can be used to test out local changes to the module.  Edit `backend.cfg` and `plan.tf` to your liking and then run `debug/debug-module.sh` to test your changes.
 
 ## Usage
-This module, unlike many of my other modules, provides default values for many of the options. I decided to this because I felt it was too cumbersome to expect a user to supply 30+ properties.  Make sure to examine the `variables.tf` to see the full list of configurable options.  Look at `debug/plan.tf` for an example of how to call the module.
+This module, unlike many of my other modules, provides default values for many of the options. I decided to this because I felt it was too cumbersome to expect a user to supply 15+ properties.  Make sure to examine the `variables.tf` to see the full list of configurable options.  Look at `debug/plan.tf` for an example of how to call the module.
 
 # Troubleshooting
+
+## Snapshots
+If you use the smaller node types, such as cache.t2.micro, cache.t2.small or cache.t2.medium, snapshotting is not permitted.  You need to set `snapshot_window` to a blank value and `snapshot_retention_limit` to 0 otherwise you will get an error.
 
 # Contributing
 

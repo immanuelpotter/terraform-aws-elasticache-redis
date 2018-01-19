@@ -3,7 +3,7 @@ terraform {
     backend "s3" {}
 }
 
-module "rds" {
+module "redis" {
     source = "../"
 
     region                           = "us-west-2"
@@ -13,43 +13,24 @@ module "rds" {
     creator                          = "kurron@jvmguy.com"
     environment                      = "development"
     freetext                         = "No notes at this time."
-    password                         = "mypassword"
-    publicly_accessible              = "true"
-    multi_az                         = "true"
-    domain_name                      = "transparent.engineering"
-    host_name                        = "debug-mysql"
+    security_group_ids               = ["sg-566f7a2a"]
     subnet_ids                       = ["subnet-568ee830","subnet-4a33b402","subnet-ac5f72f7"]
-    vpc_security_group_ids           = ["sg-566f7a2a"]
+    snapshot_window                  = ""
+    snapshot_retention_limit         = "0"
 }
 
 output "address" {
-    value = "${module.rds.address}"
+    value = "${module.redis.address}"
 }
 
-output "arn" {
-    value = "${module.rds.arn}"
+output "port" {
+    value = "${module.redis.port}"
 }
 
-output "endpoint" {
-    value = "${module.rds.endpoint}"
-}
-
-output "hosted_zone_id" {
-    value = "${module.rds.hosted_zone_id}"
+output "availability_zone" {
+    value = "${module.redis.availability_zone}"
 }
 
 output "id" {
-    value = "${module.rds.id}"
-}
-
-output "resource_id" {
-    value = "${module.rds.resource_id}"
-}
-
-output "username" {
-    value = "${module.rds.username}"
-}
-
-output "fqdn" {
-    value = "${module.rds.fqdn}"
+    value = "${module.redis.id}"
 }

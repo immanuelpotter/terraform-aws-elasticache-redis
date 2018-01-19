@@ -1,39 +1,19 @@
 output "address" {
-    value = "${aws_db_instance.mysql.address}"
-    description = "The address of the RDS instance."
+    value = "${aws_elasticache_cluster.redis.cache_nodes.0.address}"
+    description = "DNS name of the instance."
 }
 
-output "arn" {
-    value = "${aws_db_instance.mysql.arn}"
-    description = "The ARN of the RDS instance."
+output "port" {
+    value = "${aws_elasticache_cluster.redis.cache_nodes.0.port}"
+    description = "Port the instance is listening on."
 }
 
-output "endpoint" {
-    value = "${aws_db_instance.mysql.endpoint}"
-    description = "The connection endpoint."
-}
-
-output "hosted_zone_id" {
-    value = "${aws_db_instance.mysql.hosted_zone_id}"
-    description = "The canonical hosted zone ID of the DB instance (to be used in a Route 53 Alias record)."
+output "availability_zone" {
+    value = "${aws_elasticache_cluster.redis.cache_nodes.0.availability_zone}"
+    description = "The availability zone the instance was placed in."
 }
 
 output "id" {
-    value = "${aws_db_instance.mysql.id}"
-    description = "The RDS instance ID."
-}
-
-output "resource_id" {
-    value = "${aws_db_instance.mysql.resource_id}"
-    description = "The RDS Resource ID of this instance."
-}
-
-output "username" {
-    value = "${aws_db_instance.mysql.username}"
-    description = "The master username for the database."
-}
-
-output "fqdn" {
-    value = "${aws_route53_record.mysql.fqdn}"
-    description = "Primary DNS name based on the custom domain name."
+    value = "${aws_elasticache_cluster.redis.cache_nodes.0.id}"
+    description = "The ID of the instance."
 }

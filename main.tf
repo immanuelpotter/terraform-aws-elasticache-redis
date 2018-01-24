@@ -1,5 +1,5 @@
 terraform {
-    required_version = ">= 0.11.1"
+    required_version = ">= 0.11.2"
     backend "s3" {}
 }
 
@@ -15,7 +15,7 @@ provider "aws" {
 resource "aws_elasticache_subnet_group" "redis" {
     name        = "${var.name}"
     description = "Subnets the Redis instances can be place into."
-    subnet_ids  = "${var.subnet_ids}"
+    subnet_ids  = ["${var.subnet_ids}"]
 }
 
 resource "aws_elasticache_cluster" "redis" {
@@ -28,7 +28,7 @@ resource "aws_elasticache_cluster" "redis" {
     parameter_group_name     = "${var.parameter_group_name}"
     port                     = "6379"
     subnet_group_name        = "${aws_elasticache_subnet_group.redis.name}"
-    security_group_ids       = "${var.security_group_ids}"
+    security_group_ids       = ["${var.security_group_ids}"]
     apply_immediately        = "${var.apply_immediately}"
     snapshot_window          = "${var.snapshot_window}"
     snapshot_retention_limit = "${var.snapshot_retention_limit}"

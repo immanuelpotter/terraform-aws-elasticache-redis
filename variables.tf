@@ -80,12 +80,6 @@ variable "snapshot_retention_limit" {
     default = "7"
 }
 
-variable "availability_zone" {
-    type = "string"
-    description = "The availability zone to place the instance into."
-    default = ""
-}
-
 variable "subnet_ids" {
     type = "list"
     description = "List of subnets ids where the instance can live, e.g. [subnet-6412a148,subnet-e18b0185]"
@@ -99,4 +93,45 @@ variable "domain_name" {
 variable "host_name" {
     type = "string"
     description = "The host name to use when creating the mapping to your managed domain name, e.g. development-redis."
+}
+
+variable "at_rest_encryption_enabled" {
+    type = "string"
+    description = "If true, data is encrypted on disk."
+    default = "false"
+}
+
+variable "auto_minor_version_upgrade" {
+    type = "string"
+    description = "If true, minor engine upgrades will be applied automatically to the underlying Cache Cluster instances during the maintenance window."
+    default = "true"
+}
+
+variable "automatic_failover_enabled" {
+    type = "string"
+    description = "If true, a read-only replica will be automatically promoted to read/write primary if the existing primary fails."
+    default = "true"
+}
+
+variable "number_cache_clusters" {
+    type = "string"
+    description = "The number of cache clusters this replication group will have. If Multi-AZ is enabled , the value of this parameter must be at least 2. Changing this number will force a new resource."
+    default = "2"
+}
+
+variable "auth_token" {
+    type = "string"
+    description = "The password used to access a password protected server. Can be specified only if transit_encryption_enabled = true."
+}
+
+variable "transit_encryption_enabled" {
+    type = "string"
+    description = "If true, network communications are encrypted."
+    default = "true"
+}
+
+variable "notification_topic_arn" {
+    type = "string"
+    description = "An Amazon Resource Name (ARN) of an SNS topic to send ElastiCache notifications to, e.g. arn:aws:sns:us-east-1:012345678999:my_sns_topic"
+    default = ""
 }

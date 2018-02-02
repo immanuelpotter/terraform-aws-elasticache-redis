@@ -1,21 +1,11 @@
-output "address" {
-    value = "${aws_elasticache_cluster.redis.cache_nodes.0.address}"
-    description = "DNS name of the instance."
-}
-
-output "port" {
-    value = "${aws_elasticache_cluster.redis.cache_nodes.0.port}"
-    description = "Port the instance is listening on."
-}
-
-output "availability_zone" {
-    value = "${aws_elasticache_cluster.redis.cache_nodes.0.availability_zone}"
-    description = "The availability zone the instance was placed in."
-}
-
 output "id" {
-    value = "${aws_elasticache_cluster.redis.cache_nodes.0.id}"
-    description = "The ID of the instance."
+    value = "${aws_elasticache_replication_group.redis.id}"
+    description = "The ID of the ElastiCache Replication Group."
+}
+
+output "primary_endpoint_address" {
+    value = "${aws_elasticache_replication_group.redis.primary_endpoint_address}"
+    description = "The address of the endpoint for the primary node in the replication group, if the cluster mode is disabled."
 }
 
 output "fqdn" {

@@ -1,5 +1,5 @@
 terraform {
-    required_version = ">= 0.11.2"
+    required_version = ">= 0.11.3"
     backend "s3" {}
 }
 
@@ -12,29 +12,24 @@ module "redis" {
     purpose                          = "Testing out Terraform module"
     creator                          = "kurron@jvmguy.com"
     environment                      = "development"
-    freetext                         = "No notes at this time."
-    security_group_ids               = ["sg-566f7a2a"]
-    subnet_ids                       = ["subnet-568ee830","subnet-4a33b402","subnet-ac5f72f7"]
+    freetext                         = "Master, with one replica."
+    security_group_ids               = ["sg-ef8dc992"]
+    subnet_ids                       = ["subnet-1ac8b67e","subnet-c524fb9d","subnet-f29c0d84"]
     snapshot_window                  = ""
     snapshot_retention_limit         = "0"
     domain_name                      = "transparent.engineering"
     host_name                        = "debug-redis"
-}
-
-output "address" {
-    value = "${module.redis.address}"
-}
-
-output "port" {
-    value = "${module.redis.port}"
-}
-
-output "availability_zone" {
-    value = "${module.redis.availability_zone}"
+    auth_token                       = "!!DebugRedisPassword11"
+    engine_version                   = "3.2.6"
+    automatic_failover_enabled       = "false"
 }
 
 output "id" {
     value = "${module.redis.id}"
+}
+
+output "primary_endpoint_address" {
+    value = "${module.redis.primary_endpoint_address}"
 }
 
 output "fqdn" {

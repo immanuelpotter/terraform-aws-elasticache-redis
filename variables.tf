@@ -53,7 +53,7 @@ variable "node_type" {
 
 variable "parameter_group_name" {
     type = "string"
-    description = "Name of the Redis parameter group to associate to the instance, e.g. default.redis3.2"
+    description = "Name of the Redis parameter group to associate to the instance, e.g. default.redis3.2 or default.redis3.2.cluster.on"
     default = ""
 }
 
@@ -115,7 +115,7 @@ variable "automatic_failover_enabled" {
 
 variable "number_cache_clusters" {
     type = "string"
-    description = "The number of cache clusters this replication group will have. If Multi-AZ is enabled , the value of this parameter must be at least 2. Changing this number will force a new resource."
+    description = "The number of cache clusters this replication group will have. If Multi-AZ is enabled, the value of this parameter must be at least 2. Changing this number will force a new resource."
     default = "2"
 }
 

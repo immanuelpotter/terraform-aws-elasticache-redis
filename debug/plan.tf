@@ -19,7 +19,7 @@ module "redis" {
     snapshot_retention_limit         = "0"
     domain_name                      = "transparent.engineering"
     host_name                        = "debug-redis"
-    auth_token                       = "!!DebugRedisPassword11"
+    auth_token                       = "MustBeSixteenCharacters"
     engine_version                   = "3.2.6"
     automatic_failover_enabled       = "false"
 }

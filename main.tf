@@ -40,15 +40,6 @@ resource "aws_elasticache_replication_group" "redis" {
     snapshot_retention_limit      = "${var.snapshot_retention_limit}"
     apply_immediately             = "${var.apply_immediately}"
 
-    tags {
-        Name        = "${var.name}"
-        Project     = "${var.project}"
-        Purpose     = "${var.purpose}"
-        Creator     = "${var.creator}"
-        Environment = "${var.environment}"
-        Freetext    = "${var.freetext}"
-    }
-
     lifecycle {
         create_before_destroy = true
     }

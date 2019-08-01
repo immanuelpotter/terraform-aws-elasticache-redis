@@ -35,9 +35,8 @@ resource "aws_elasticache_cluster" "redis" {
 }
 
 data "aws_route53_zone" "selected" {
-    provider     = "aws.east"
     name         = "${var.domain_name}."
-    private_zone = false
+    private_zone = true
 }
 
 resource "aws_route53_record" "redis" {

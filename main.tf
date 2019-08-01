@@ -1,17 +1,3 @@
-terraform {
-    required_version = ">= 0.11.2"
-    backend "s3" {}
-}
-
-provider "aws" {
-    region     = "${var.region}"
-}
-
-provider "aws" {
-    alias = "east"
-    region = "us-east-1"
-}
-
 resource "aws_elasticache_subnet_group" "redis" {
     name        = "${var.name}"
     description = "Subnets the Redis instances can be place into."

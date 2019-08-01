@@ -1,6 +1,8 @@
 # Overview
 This project is a Terraform module that creates a Redis ElastiCache instance.
 
+This fork removes local region declaration, to be used as part of your wider tf vars (in your VPC).
+
 # Guidebook
 Details about this project are contained in the [guidebook](guidebook/guidebook.adoc) and should be considered mandatory reading prior to contributing to this project.
 

@@ -1,8 +1,3 @@
-variable "region" {
-    type = "string"
-    description = "The AWS region to deploy into (e.g. us-east-1)"
-}
-
 variable "name" {
     type = "string"
     description = "What to name the resources being created"
